@@ -1,36 +1,52 @@
-import logos from "../../../public/asset/logo.svg"
+import logos from "../../../public/asset/logo.svg";
 
 export default function Footer() {
     return (
-        <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-10">
-            <aside>
-               <img src={logos} alt="" />
-                <p>
-                    ACME Industries Ltd.
-                    <br />
-                    Providing reliable tech since 1992
-                </p>
-            </aside>
-            <nav>
-                <h6 className="footer-title">Services</h6>
-                <a className="link link-hover">Branding</a>
-                <a className="link link-hover">Design</a>
-                <a className="link link-hover">Marketing</a>
-                <a className="link link-hover">Advertisement</a>
-            </nav>
-            <nav>
-                <h6 className="footer-title">Company</h6>
-                <a className="link link-hover">About us</a>
-                <a className="link link-hover">Contact</a>
-                <a className="link link-hover">Jobs</a>
-                <a className="link link-hover">Press kit</a>
-            </nav>
-            <nav>
-                <h6 className="footer-title">Legal</h6>
-                <a className="link link-hover">Terms of use</a>
-                <a className="link link-hover">Privacy policy</a>
-                <a className="link link-hover">Cookie policy</a>
-            </nav>
+        <footer className="bg-base-200 text-base-content px-6 py-10">
+            <div className="container mx-auto grid 
+                grid-cols-1 
+                sm:grid-cols-2 
+                md:grid-cols-3 
+                lg:grid-cols-4 
+                gap-10">
+
+                {/* Logo Section */}
+                <aside>
+                    <img src={logos} alt="logo" className="w-28 sm:w-32 md:w-36 mb-4" />
+                    <p className="text-sm">
+                        ACME Industries Ltd.
+                        <br />
+                        Providing reliable tech since 1992
+                    </p>
+                </aside>
+
+                {/* Services */}
+                <nav>
+                    <h6 className="footer-title mb-3">Services</h6>
+                    <a className="link link-hover block">Branding</a>
+                    <a className="link link-hover block">Design</a>
+                    <a className="link link-hover block">Marketing</a>
+                    <a className="link link-hover block">Advertisement</a>
+                </nav>
+
+                {/* Company */}
+                <nav>
+                    <h6 className="footer-title mb-3">Company</h6>
+                    <a className="link link-hover block">About us</a>
+                    <a className="link link-hover block">Contact</a>
+                    <a className="link link-hover block">Jobs</a>
+                    <a className="link link-hover block">Press kit</a>
+                </nav>
+
+                {/* Legal */}
+                <nav>
+                    <h6 className="footer-title mb-3">Legal</h6>
+                    <a className="link link-hover block">Terms of use</a>
+                    <a className="link link-hover block">Privacy policy</a>
+                    <a className="link link-hover block">Cookie policy</a>
+                </nav>
+
+            </div>
         </footer>
-    )
+    );
 }

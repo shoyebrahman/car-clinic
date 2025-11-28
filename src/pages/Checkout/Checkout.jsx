@@ -24,7 +24,7 @@ export const Checkout = () => {
     }
     console.log(checkout)
 
-    fetch('http://localhost:5000/checkout', {
+    fetch('https://car-clinic-server-mu.vercel.app/checkout', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'

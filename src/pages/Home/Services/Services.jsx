@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react'
+//import React, { useEffect, useState } from 'react'
 import { ServiceCard } from './ServiceCard'
+import { useServices } from '../../../Hooks/useServices'
 //rafcp
 
 const Services = () => {
-    const [services, setServices]= useState([])
-    useEffect( () => {
-        fetch('http://localhost:5000/services')
-        .then( res => res.json())
-        .then(data => setServices(data))
-    }, [])
+  const services = useServices()
+    // const [services, setServices]= useState([])
+    // useEffect( () => {
+    //     fetch('https://car-clinic-server-mu.vercel.app/services')
+    //     .then( res => res.json())
+    //     .then(data => setServices(data))
+    // }, [])
   return (
     <div className='mt-4'> 
       <div className='text-center'>

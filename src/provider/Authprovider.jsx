@@ -3,6 +3,7 @@ import app from '../firebase/firebase.config';
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import { createContext } from 'react';
 import { CgPassword } from 'react-icons/cg';
+import axios from 'axios';
 
 export const AuthContext = createContext();
 const auth = getAuth(app)
@@ -30,9 +31,30 @@ const logOut = () => {
 
     useEffect( () => {
       const unsubscribe = onAuthStateChanged(auth, currentUser =>{
+        const userEmail = currentUser?.email || user?.email;
+        const loggedUser = { email: userEmail}
         setUser(currentUser);
         console.log("current user", currentUser)
         setLoading(false);
+        //if user exist then issue a token
+        if(currentUser){
+          
+          axios.post( 'https://car-clinic-server-mu.vercel.app/jwt', loggedUser, {
+            withCredentials: true
+          })
+          .then(res => {
+            console.log('token response', res.data)
+          }
+        )
+        }
+        else{
+          axios.post('https://car-clinic-server-mu.vercel.app/logout', loggedUser, {
+            withCredentials: true
+          })
+          .then(res => {
+            console.log(res.data)
+          })
+        }
       });
       return () => {
         return unsubscribe();

@@ -9,6 +9,7 @@ import { Signup } from "../pages/Signup/Signup";
 import { Checkout } from "../pages/Checkout/Checkout";
 import { Bookings } from "../pages/Bookings/Bookings";
 import { PrivateRoutes } from "./PrivateRoutes";
+import { About } from "../pages/Home/About/About";
 
 export const router = createBrowserRouter([
   {
@@ -30,7 +31,11 @@ export const router = createBrowserRouter([
       {
         path: "checkout/:id",
         element: <PrivateRoutes><Checkout></Checkout></PrivateRoutes>,
-        loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
+        loader: ({params}) => fetch(`https://car-clinic-server-mu.vercel.app/services/${params.id}`)
+      },
+      {
+        path: "/about",
+        element: <About></About>
       },
       {
         path: "/bookings",

@@ -1,11 +1,14 @@
-import React, { useContext } from 'react'
+//import React, { useContext } from 'react'
 import login from "../../../public/asset/images/login/login.svg"
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { AuthContext } from '../../provider/Authprovider'
+//import { AuthContext } from '../../provider/Authprovider'
+import axios from 'axios'
+import { useAuth } from "../../Hooks/useAuth"
 
 export const Login = () => {
 
-  const {signIn} = useContext(AuthContext)
+  //const {signIn} = useContext(AuthContext)
+  const {signIn} = useAuth();
   const location = useLocation();
   const navigate = useNavigate()
 
@@ -18,9 +21,20 @@ export const Login = () => {
         console.log(email, password)
         signIn(email, password)
         .then(result => {
-          const user = result.user;
-          console.log(user)
-          navigate(location?.state ? location?.state : '/')
+          const loggedInUser = result.user;
+          console.log(loggedInUser)
+          const user = { email }
+         // navigate(location?.state ? location?.state : '/')
+         //get access token
+         axios.post('https://car-clinic-server-mu.vercel.app/jwt', user, {
+          withCredentials: true
+         })
+         .then(res =>{
+          console.log(res.data)
+          if(res.data.success) {
+             navigate(location?.state ? location?.state : '/')
+          }
+         })
         })
         .catch(error => console.log(error))
     }

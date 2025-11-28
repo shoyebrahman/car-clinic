@@ -1,26 +1,35 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../provider/Authprovider'
 import { Bookingcard } from './Bookingcard'
+import axios from 'axios'
+import { useAxiosSecure } from '../../Hooks/useAxiosSecure'
 
 export const Bookings = () => {
   const { user } = useContext(AuthContext)
   const [bookings, setBookings] = useState([])
-
+  const asiosSecure = useAxiosSecure()
+  const url = `/checkout?email=${user.email}`
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/checkout?email=${user.email}`)
-        .then(res => res.json())
-        .then(data => {
-          console.log(data)
-          setBookings(data)
-        })
+        asiosSecure.get(url)
+        .then(res => setBookings(res.data))
+        // axios.get(`https://car-clinic-server-mu.vercel.app/checkout?email=${user.email}`, {withCredentials: true})
+        // .then(res => {
+        //   setBookings(res.data)
+        // })
+      // fetch(`https://car-clinic-server-mu.vercel.app/checkout?email=${user.email}`)
+      //   .then(res => res.json())
+      //   .then(data => {
+      //     console.log(data)
+      //     setBookings(data)
+      //   })
     }
-  }, [user])
+  }, [user, asiosSecure, url])
 
   const handleDelete = id => {
     const proceed = confirm('Are you sure?');
     if (proceed) {
-      fetch(`http://localhost:5000/checkout/${id}`, {
+      fetch(`https://car-clinic-server-mu.vercel.app/checkout/${id}`, {
         method: 'DELETE'
       })
         .then(res => res.json())
@@ -37,7 +46,7 @@ export const Bookings = () => {
   }
 
   const handleBookingConform = id => {
-    fetch(`http://localhost:5000/checkout/${id}`, {
+    fetch(`https://car-clinic-server-mu.vercel.app/checkout/${id}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json'
