@@ -61,7 +61,7 @@ export const Login = () => {
         
         </div>
       </form>
-      <p className='my-4 text-center'>New in Car Clinic? <Link className='text-orange-600 font-bold' to="/signup">Sign Up</Link></p>
+      <p className='my-4 text-center'>New in VehicleBoss? <Link className='text-orange-600 font-bold' to="/signup">Sign Up</Link></p>
       </div>
     </div>
   </div>

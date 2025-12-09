@@ -12,7 +12,7 @@ import { router } from './Router/Router';
 import { Authprovider } from './provider/Authprovider';
 
 createRoot(document.getElementById('root')).render(
- <div className='max-w-7xl mx-auto pt-3 pr-12 pl-12'>
+ <div className='lg:max-w-7xl mx-auto lg:pt-3 lg:pr-12 lg:pl-12'>
 
    <StrictMode>
     <Authprovider>

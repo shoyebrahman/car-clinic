@@ -1,18 +1,22 @@
-import logos from "../../../public/asset/logo.svg";
+import logos from "../../../public/asset/slogo/vehicle.png";
 
 export default function Footer() {
     return (
         <footer className="bg-base-200 text-base-content px-6 py-10">
             <div className="container mx-auto grid 
-                grid-cols-1 
+                grid-cols-2
+                sm:text-2xl
+                sm:gap-4
+                sm:mt-3
                 sm:grid-cols-2 
                 md:grid-cols-3 
+                md:gap-10
                 lg:grid-cols-4 
-                gap-10">
+                lg:gap-10">
 
                 {/* Logo Section */}
                 <aside>
-                    <img src={logos} alt="logo" className="w-28 sm:w-32 md:w-36 mb-4" />
+                    <img src={logos} alt="logo" className="w-28 sm:w-15 md:w-36 lg:w-200 mb-2" />
                     <p className="text-sm">
                         ACME Industries Ltd.
                         <br />
@@ -21,7 +25,7 @@ export default function Footer() {
                 </aside>
 
                 {/* Services */}
-                <nav>
+                <nav className="mt-4">
                     <h6 className="footer-title mb-3">Services</h6>
                     <a className="link link-hover block">Branding</a>
                     <a className="link link-hover block">Design</a>

@@ -13,6 +13,7 @@ export const Checkout = () => {
     const name = form.name.value;
     const date = form.date.value;
     const email = user?.email;
+
     const checkout = {
       customerName: name,
       email,
@@ -22,70 +23,90 @@ export const Checkout = () => {
       service_id: _id,
       price: price
     }
-    console.log(checkout)
 
     fetch('https://car-clinic-server-mu.vercel.app/checkout', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
-
       },
       body: JSON.stringify(checkout)
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      if(data.insertedId) {
-        alert('service book successfully')
-      }
-    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.insertedId) {
+          alert('Service booked successfully!')
+        }
+      })
   }
 
   return (
-    <div className='items-center justify-center ml-80'>
-      <div>Checkout {title}</div>
+    <div className="px-4 sm:px-6 lg:px-8 py-10">
+      
+      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-center mb-8">
+        Checkout – {title}
+      </h1>
 
-      <div>
+      
+      <div className="max-w-2xl mx-auto bg-base-200 p-6 sm:p-8 rounded-xl shadow-md">
+
         <form onSubmit={handleCheckout}>
-          <div className='items-center'>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-              <div className='card-body'>
-                <fieldset className='fieldset'>
-                  <label className='label'>Name</label>
-                  <input
-                    type='text'
-                    name='name'
-                    className='input'
-                    defaultValue={user?.displayName}
-                    placeholder='name'
-                  />
-                  <label className='label'>Date</label>
-                  <input type='date' name='date' className='input' />
-                  <label className='label'>Email</label>
-                  <input
-                    type='email'
-                    name='email'
-                    className='input'
-                    defaultValue={user?.email}
-                    placeholder='Email'
-                  />
-                  <label className='label'>Due Amount</label>
-                  <input
-                    type='text'
-                    defaultValue={price}
-                    className='input'
-                    readOnly
-                  />
-                  <input
-                    className='btn btn-neutral mt-4 btn-block'
-                    type='submit'
-                    value='Order Confirm'
-                  />
-                </fieldset>
-              </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+            
+            <div className="form-control">
+              <label className="label font-medium">Name</label>
+              <input
+                type="text"
+                name="name"
+                className="input input-bordered"
+                defaultValue={user?.displayName}
+              />
             </div>
+
+          
+            <div className="form-control">
+              <label className="label font-medium">Date</label>
+              <input
+                type="date"
+                name="date"
+                className="input input-bordered"
+              />
+            </div>
+
+          
+            <div className="form-control">
+              <label className="label font-medium">Email</label>
+              <input
+                type="email"
+                name="email"
+                className="input input-bordered"
+                defaultValue={user?.email}
+                readOnly
+              />
+            </div>
+
+            
+            <div className="form-control">
+              <label className="label font-medium">Due Amount</label>
+              <input
+                type="text"
+                defaultValue={price}
+                className="input input-bordered"
+                readOnly
+              />
+            </div>
+
           </div>
+
+          
+          <button
+            type="submit"
+            className="btn btn-neutral w-full mt-6"
+          >
+            Order Confirm
+          </button>
         </form>
+
       </div>
     </div>
   )

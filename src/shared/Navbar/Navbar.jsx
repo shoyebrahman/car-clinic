@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import logo from "../../../public/asset/logo.svg"
+import logo from "../../../public/asset/slogo/vehicle.png"
 //import { AuthContext } from '../../provider/Authprovider'
 import { useAuth } from '../../Hooks/useAuth'
 
@@ -27,9 +27,19 @@ import { useAuth } from '../../Hooks/useAuth'
        <li> <Link to="/about">About</Link></li>
     </>
     return (
-        <div className="navbar bg-base-100 shadow-sm p-7">
+        <div className="navbar bg-base-100 shadow-sm p-5">
             <div className="navbar-start">
-                <div className="dropdown">
+              
+                <Link to="/" className="btn btn-ghost text-xl">
+                <img className="w-20 sm:w-10  md:w-30 lg:w-40 mb-1" src={logo} alt="" /></Link>
+            </div>
+            <div className="navbar-center hidden lg:flex">
+                <ul className="menu menu-horizontal px-1">
+                    {Navitem}
+                </ul>
+            </div>
+            <div className="navbar-end">
+                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
                     </div>
@@ -39,16 +49,6 @@ import { useAuth } from '../../Hooks/useAuth'
                       {Navitem}
                     </ul>
                 </div>
-                <Link to="/" className="btn btn-ghost text-xl">
-                <img src={logo} alt="" /></Link>
-            </div>
-            <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
-                    {Navitem}
-                </ul>
-            </div>
-            <div className="navbar-end">
-                <a className="btn">Button</a>
             </div>
         </div>
     )
